@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0; padding: 0;}
+
+        .wrap{width: 700px; margin: 100px auto; border: 2px solid black; text-align: center;-} 
+
+        .view{border: 1px solid red; padding-top: 700px;}
+
+        .view img{transition: all 1s; transform: scale(0); opacity: 0;}
+        .view img.ani{ transform: scale(1); opacity: 1;}
+
+        .view img:hover{filter: sepia() blur(5px);}
+
+        .box{position: relative; left: -600px;opacity: 0; transition: all 0.5s;}
+        .box.in{left: 650px; opacity: 1;}
+        .box img{}
+
+        .box2{position: absolute; right: -80px; opacity: 0 ;transition: all 0.5s 0.3s; }
+        .box2.in{right: 80px; opacity: 1;}
+        .box2 img{}
+    </style>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script lang="java">
+        $(function(){
+
+        })
+        $(document).scroll(function(){
+            var t =$(this).scrollTop()
+            if(t >= 80){
+                // $(".view img").addClass("ani")
+                $(".view img").each(function(i){
+                    setTimeout(function(){
+                        $(".view img").eq(i).addClass("ani")
+                    },i * 300)
+                })
+            }else{ $(".view img").each(function(i){
+                    setTimeout(function(){
+                        $(".view img").eq(i).removeClass("ani")
+                    },i * 300)
+                })
+                // $(".view img").removeClass("ani")
+            }
+
+            if(t >= 100){
+                $(".box").addClass("in")
+            }else{
+                $(".box").removeClass("in")
+            }
+
+            if(t >=100){
+                $(".box2").addClass("in")
+            }else{
+                $(".box").removeClass("in")}
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <h1>스크롤 하면 차례대로 실행되는 애니메이션 ↓</h1>
+
+        <div class="view">
+            <img src="img/icon01.png" alt="">
+            <img src="img/icon02.png" alt="">
+            <img src="img/icon03.png" alt="">
+        </div>
+
+        <p>이미지에 마우스를 올려보세요</p>
+    </div>
+
+    <div class="box">
+        <img src="img/logo.png" alt="logo">
+    </div>
+
+    <div class="box2">
+        <img src="img/mario-cart-cooper.png" alt="mario">
+    </div>
+</body>
+</html>
